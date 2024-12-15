@@ -1,0 +1,94 @@
+<section class="featured-projects">
+  <div class="description">
+    <h2 class="heading-2xl">
+      <span>Nuestras</span>
+      <span>Raquetas</span>
+    </h2>
+    <p>Conoce nuestras raquetas y aprende a jugar Tennis como un profesional.</p>
+    <div class="carousel-indicators-container"></div>
+    <div class="carousel-controls-container">
+      <button id="carousel-previous" class="carousel-control">
+        <img width="54px" height="54px" src="{{ 'left-arrow.svg' | asset_url }}">
+      </button>
+      <button id="carousel-next" class="carousel-control carousel-control-active">
+        <img width="54px" height="54px" src="{{ 'right-arrow.svg' | asset_url }}">
+      </button>
+    </div>
+  </div>
+  <ul class="products-carousel" id="products-carousel" data-gap="36">
+    {% for product in collections.all.products %}
+      <li class="product">
+        <a href="{{ product.url }}">
+          <h3 class="visually-hidden">{{ product.title }}</h3>
+          <p>{{ forloop.index }}</p>
+          <img width="288px" height="344px" src="{{ product.featured_image | image_url}}">
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<script>
+  const carouselWrapper = document.querySelector('#products-carousel');
+  const gap = Number(carouselWrapper.getAttribute('data-gap'));
+  carouselWrapper.style.setProperty('--_gap', `${gap}px`);
+  const numOfProducts = carouselWrapper.querySelectorAll('.product').length;
+  const productWidth = carouselWrapper.querySelector('.product').clientWidth;
+  const carouselIndicatorsContainer = document.querySelector('.carousel-indicators-container');
+
+  function carouselHandler() {
+    carouselIndicatorsContainer.innerHTML = '';
+    const carouselWrapperWidth = carouselWrapper.clientWidth;
+    const numOfVisibleProducts = carouselWrapperWidth / (productWidth + gap);
+    const totalIndicators = Math.ceil(numOfProducts / Math.floor(numOfVisibleProducts));
+    const previousButton = document.querySelector('#carousel-previous');
+    const nextButton = document.querySelector('#carousel-next');
+
+    let activeIndex = 0;
+
+    function createIndicators() {
+      for (let i = 0; i < totalIndicators; i++) {
+        const indicator = document.createElement('button');
+        indicator.classList.add('carousel-indicator');
+        if (i === 0) indicator.classList.add('active');
+        indicator.addEventListener('click', () => {
+          activeIndex = i;
+          scrollToPosition(activeIndex);
+        });
+        carouselIndicatorsContainer.appendChild(indicator);
+      }
+    }
+
+    function scrollToPosition(index) {
+      if (activeIndex < totalIndicators - 1) {
+        nextButton.classList.add('carousel-control-active');
+      } else {
+        nextButton.classList.remove('carousel-control-active');
+      }
+
+      const scrollAmount = index * (productWidth + gap) * Math.floor(numOfVisibleProducts);
+      carouselWrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      updateActiveIndicator();
+    }
+
+    function updateActiveIndicator() {
+      document.querySelectorAll('.carousel-indicator').forEach((ind, i) => {
+        ind.classList.toggle('active', i === activeIndex);
+      });
+    }
+
+    previousButton.addEventListener('click', () => {
+      activeIndex = (activeIndex - 1 + totalIndicators) % totalIndicators;
+      scrollToPosition(activeIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+      activeIndex = (activeIndex + 1) % totalIndicators;
+      scrollToPosition(activeIndex);
+    });
+
+    createIndicators();
+  }
+
+  carouselHandler();
+</script>
