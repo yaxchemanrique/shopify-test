@@ -106,6 +106,10 @@ button {
   color: var(--dark);
 }
 
+.text-white {
+  color: var(--white);
+}
+
 .btn {
   display: block;
   padding: 1rem 2.5rem 1rem 1.875rem;
@@ -274,8 +278,8 @@ h1 .text-sickly-yellow {
 
 /* Featured Products */
 .featured-projects {
-  min-height: 468px;
   display: flex;
+  font-size: 1.125rem;
 }
 
 .featured-projects .description {
@@ -285,6 +289,27 @@ h1 .text-sickly-yellow {
   background-position: center left;
   flex-basis: 530px;
   flex-shrink: 0;
+  padding: 68px 60px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.featured-projects .content {
+  max-width: 20.5rem;
+}
+
+.featured-projects .content h2 {
+  line-height: 1.28;
+}
+
+.featured-projects .content p {
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.featured-projects .carousel-indicators-container,
+.featured-projects .carousel-controls-container {
+  margin-top: 2rem;
 }
 
 .carousel-controls-container {
