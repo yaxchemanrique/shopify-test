@@ -276,6 +276,7 @@ h1 .text-sickly-yellow {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  padding-inline: 1rem;
 }
 
 .more-info .content {
