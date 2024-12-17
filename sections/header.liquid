@@ -3,11 +3,45 @@
     <img width="37px" height="37px" src="{{ 'logo-tennis-ball.svg' | asset_url }}">
   </a>
   {% render 'main-nav' %}
-  <div>
+  <div class="right-links">
     <a href="#">Es</a>
     <a href="#">En</a>
+    <button id="hamburger-menu">
+      <img width="20px" height="20px" src="{{ 'hamburger-menu.svg' | asset_url }}">
+    </button>
+    {% render 'drawer-nav' %}
   </div>
 </nav>
+
+<script>
+  const hamburgerMenu = document.querySelector('#hamburger-menu');
+  const drawerNav = document.querySelector('.drawer-nav');
+  const closeDrawerNav = document.querySelector('#close-drawer-nav');
+
+  console.log(hamburgerMenu);
+  console.log(drawerNav);
+
+  drawerNav.style.display = 'none';
+
+  function toggleDisplay() {
+    if (drawerNav.style.display === 'none') {
+      hamburgerMenu.innerHTML = `<img width="20px" height="20px" src="{{ 'x.svg' | asset_url }}">`;
+      drawerNav.style.display = 'flex';
+    } else {
+      hamburgerMenu.innerHTML = `<img width="20px" height="20px" src="{{ 'hamburger-menu.svg' | asset_url }}">`;
+      drawerNav.style.display = 'none';
+    }
+  }
+
+  hamburgerMenu.addEventListener('click', toggleDisplay);
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && drawerNav.style.display === 'flex') {
+      hamburgerMenu.innerHTML = `<img width="20px" height="20px" src="{{ 'hamburger-menu.svg' | asset_url }}">`;
+      drawerNav.style.display = 'none';
+    }
+  });
+</script>
 
 {% schema %}
 {

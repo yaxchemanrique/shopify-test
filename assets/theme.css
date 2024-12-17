@@ -7,28 +7,26 @@
   --warm-grey: #787878;
   --white: #fff;
   --dark-three: #282e47;
+
+  --ff: 'HelveticaNeue'
 }
 
 @font-face {
   font-family: HelveticaNeue;
   src: local(HelveticaNeue),
-    url(/path/to/HelveticaNeue.woff2) format("woff2"),
-    url(/path/to/HelveticaNeue.woff) format("woff"),
-    url(/path/to/HelveticaNeue.ttf) format("truetype");
-  font-weight: normal;
+    url('./fonts/HelveticaNeue-Roman.woff2') format("woff2"),
+    url('./fonts/HelveticaNeue-Roman.woff') format("woff");
+  font-weight: 400;
   font-style: normal;
-  font-stretch: normal;
 }
 
 @font-face {
   font-family: HelveticaNeue;
   src: local(HelveticaNeue-Bold),
-    url(/path/to/HelveticaNeue-Bold.woff2) format("woff2"),
-    url(/path/to/HelveticaNeue-Bold.woff) format("woff"),
-    url(/path/to/HelveticaNeue-Bold.ttf) format("truetype");
-  font-weight: bold;
+    url('./fonts/HelveticaNeue-Heavy.woff2') format("woff2"),
+    url('./fonts/HelveticaNeue-Heavy.woff') format("woff");
+  font-weight: 600;
   font-style: normal;
-  font-stretch: normal;
 }
 
 * {
@@ -38,7 +36,7 @@
 }
 
 body {
-  font-family: system-ui;
+  font-family: var(--ff);
 }
 
 a {
@@ -62,7 +60,7 @@ button {
 }
 
 .heading-3xl {
-  font-family: HelveticaNeue;
+  font-family: var(--ff);
   font-size: 3.375rem;
   font-weight: normal;
   line-height: 1.28;
@@ -77,7 +75,7 @@ button {
 }
 
 .text-lg-normal {
-  font-family: HelveticaNeue;
+  font-family: var(--ff);
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.78;
@@ -86,7 +84,7 @@ button {
 }
 
 .text-sm-bold {
-  font-family: HelveticaNeue;
+  font-family: var(--ff);
   font-size: 0.8125rem;
   font-weight: bold;
   line-height: 2.15;
@@ -416,7 +414,7 @@ h1 .text-sickly-yellow {
 /* Image Block */
 .image-block {
   min-height: 586px;
-  background-image: url('action-athlete-ball-342361@2x.png');
+  background-image: url('./action-athlete-ball-342361@2x.png');
   background-size: cover;
   background-position: center left;
   background-repeat: no-repeat;
