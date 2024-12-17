@@ -193,6 +193,10 @@ button {
   padding-right: var(--_min-padding);
 }
 
+#hamburger-menu {
+  display: none;
+}
+
 .header-navbar.hero-container {
   left: 50%;
   transform: translateX(-50%);
@@ -221,6 +225,7 @@ button {
   width: 100%;
   z-index: 10;
   padding-top: 2.75rem;
+  min-height: 72px;
 }
 
 .header-navbar a.active-page {
@@ -238,10 +243,56 @@ button {
   bottom: -12px;
 }
 
+.right-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (width < 1000px) {
+  #hamburger-menu {
+    display: grid;
+    place-content: center;
+    background-color: transparent;
+    border: solid 1px var(--white);
+    margin-left: 0.5rem;
+  }
+
+  .hero-container .navigation-links {
+    display: none;
+  }
+
+  .hero-container .right-links {
+    margin-inline-start: auto;
+    position: relative;
+  }
+
+  .drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: max-content;
+    background-color: var(--white);
+    color: var(--dark-two);
+    position: absolute;
+    top: calc(100% + 1rem);
+    right: 0;
+    padding: 0.5rem;
+  }
+
+  .drawer-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .header-navbar a.active-page::before {
+    content: none;
+  }
+}
+
 /* Hero Section */
 .hero-section {
   padding-block: 17.25rem;
-  background-image: url('hero-img@2x.png');
+  background-image: url('./hero-img@2x.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;

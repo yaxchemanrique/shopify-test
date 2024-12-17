@@ -1,0 +1,10 @@
+<ul class="drawer-nav">
+  {% for link in linklists['main-menu'].links %}
+    <a
+      href="{{ link.url }}"
+      class="{% if link.url == request.path or link.url == request.fullpath %}active-page{% endif %}"
+    >
+      {{ link.title }}
+    </a>
+  {% endfor %}
+</ul>
